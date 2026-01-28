@@ -6,7 +6,7 @@ CREATE TABLE Patients (
     city TEXT
 );
 
--- Insert sample data into Patients 
+-- A TABLE is the fuel of the SQL engine. You need one to do anything, and then you can SELECT it.
 INSERT INTO Patients (patient_id, name, age, gender, city) VALUES
 (1, 'John Doe', 45, 'M', 'Boston'),
 (2, 'Jane Smith', 32, 'F', 'Cambridge'),
@@ -15,22 +15,22 @@ INSERT INTO Patients (patient_id, name, age, gender, city) VALUES
 (5, 'David Brown', 29, 'M', 'Boston'),
 (6, 'Emily Davis', 67, 'F', 'Cambridge');
 
-select * from Patients;
+select * from Patients; -- The * in SELECT chooses ALL of the TABLE
 
 SELECT * from Patients
-WHERE age > '40';
+WHERE age > '40'; -- WHERE changes what is SELECTed, you need an argument after it.
 
-SELECT COUNT(*) from Patients;
+SELECT COUNT(*) from Patients; -- COUNT just counts the number of rows
 
-SELECT count(DISTINCT city) from Patients;
+SELECT count(DISTINCT city) from Patients; -- DISTINCT is important as it consolidates the values into the individuals.
 
 SELECT DISTINCT city from Patients;
 
-SELECT avg(age) FROM Patients;
+SELECT avg(age) FROM Patients; -- avg(variable) is a very powerfull tool, it also comes in min(*) and max(*).
 
 select gender, avg(age) Avg_age from Patients GROUP BY gender;
 
-select city, min(age) "Minimum Age :)" FROM Patients GROUP by city;
+select city, min(age) "Minimum Age :)" FROM Patients GROUP by city; -- You can name a variable with "quotations" after SELECTIng it.
 -- remember columns = fields and rows = points or something
 
 -- Create Visits table
@@ -56,4 +56,4 @@ INSERT INTO Visits (visit_id, patient_id, visit_date, diagnosis, cost) VALUES
 SELECT * FROM Visits;
 
 SELECT city "City", avg(cost) "Average Cost :)"
-FROM Patients JOIN Visits on Patients.patient_id = Visits.patient_id group by city;
+FROM Patients JOIN Visits on Patients.patient_id = Visits.patient_id group by city; -- This 
