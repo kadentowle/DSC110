@@ -1,0 +1,90 @@
+# I wrote this code and I hope it demonstrates what we did in class, it demonstrates printing, matrices (which are lists), dictionaries, variables, f-strings, equations with integers and variables, functions, if statements and is also playable
+
+# ------------------------ START COPY ------------------------
+
+import random # I learned that random numbers are a library in python.
+
+# ------------------------ my cool matrix :) ------------------------
+
+matrix = [ # this definetly didn't need to be a matrix but it was more fun
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+victorydictonary ={
+    '1':"Insane! You got it FIRST TRY.",
+    '2':"you're lucky, you got it 2nd try.",
+    '3':"good guessing, you got it on your 3rd try.",
+    '4':"that was close, you got it on your last try.",
+    '5':"YOU LOST :skull:"
+} 
+
+livesdictionary ={
+    '4':"[<3 <3 <3 <3]",
+    '3':"[<3 <3 <3 XX]",
+    '2':"[<3 <3 XX XX]",
+    '1':"[<3 XX XX XX]",
+    '0':" :( FIN :( "
+}
+
+# ------------------------ rng variables ------------------------
+
+randx = random.randint(0, 2)
+randy = random.randint(0, 2)
+secret = matrix[randx][randy]
+
+# ------------------------ tempature ------------------------
+
+tempc = (secret*10)-32/1.8-0.222222222222222
+
+# ------------------------ real code ---------------------------
+
+choice = None
+
+lives = 4
+
+def printlives():
+   print(livesdictionary[f'{lives}'])
+
+trys = 1 # yeah I could correct the spelling but nobody will see the variable, right...
+
+while choice != secret: # the while function was chat-gpt given, I didn't know how to do this in python
+
+  if trys == 1:
+    print("LIVES"), printlives(), print("TEMP (C): ",tempc)
+    choice = int(input("Pick a number 1-9: ")) # the integer input is secure from injection attacks, that's not why I picked it (not really, I learned inputs from chatgpt)
+  else:
+    if lives > 0:
+      choice = int(input(""))
+    else:
+      print()
+  if choice == secret:
+    print(victorydictonary[f'{trys}']) # I got the f-string idea from your lecture 
+  else:
+    lives -= 1
+    if lives > 0:
+      printlives()
+      print("you lost a life, try again")
+      trys += 1
+    else:
+      printlives()
+
+# ------------------------ DO NOT COPY BELOW THIS LINE ------------------------
+
+
+# ------------------------ body mass index code - in class activity ------------------------
+
+# (BMI = weight (kg) / height (m²))
+def calculatebmi(heightlb,weightlb):
+  bmi = weightlb/(heightin*heightin)
+  if bmi<20:
+    print('underweight')
+  else:
+    print('Normal')
+
+weight = int(input("weight (kg)"))
+height = int(input("height (m)"))
+
+calculatebmi(weight,height)
+
