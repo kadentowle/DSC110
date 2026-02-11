@@ -1,0 +1,80 @@
+import pandas as pd
+
+# ---------- DF ------------
+
+df = pd.read_csv('https://raw.githubusercontent.com/osoliman/DSC110/refs/heads/main/Datasets/nhanes_final.csv')
+# df.shape
+# df.tail(1)
+# print(f'The number of rows in our dataset is {df.shape(0)}')
+# print(f'The number of columns in our dataset is {df.shape(1)}')
+
+# 1+1==2 # Outputs 'True'
+# 1+1==3 # Outputs 'False'
+# int(True) # Outputs '1'
+# int(False) # Outputs '0'
+
+# ---------- CLASS BREAK ----------
+
+# df.isna().sum()
+# df.isna().sum() 
+# df.isna().mean() * 100
+
+df_clean = df.dropna(subset=['has_diabetes']).copy() # .copy() is optional but the code is cleaner with it, we're not golfing :)
+# df_clean.isna().mean() * 100 # has_diabetes is = 0.000000
+# df_clean.shape 
+mean_bp = df_clean['systolic_bp'].mean()
+# print (mean_bp)
+df_clean['systolic_bp'] = df_clean['systolic_bp'].fillna(mean_bp)
+# df_clean['systolic_bp'].isna().sum() # Outputs 'np.int64(0)'
+
+# ----------- TRANSFORM VARIABLES ----------
+
+df['bmi_category'] = pd.cut(df['bmi'],
+                             bins=[0, 18.5, 25, 30, 100],
+                             labels=['Underweight', 'Normal', 'Overweight', 'Obese'])
+
+# ---------- EDUCATION MAP ----------
+
+education_map = { # this is a dictionary
+    1.0: 'Less than 9th grade', # had to remove quotes from around numbers because it didn't like floats as strings i guess
+    2.0: '9-11th grade',
+    3.0: 'High school grad',
+    4.0: 'Some college or AA degree',
+    5.0: 'College graduate',
+    9.0: 'Do not know',
+    #'nan': 'Missing'
+}
+
+df['education_label'] = df['education'].map(education_map)
+
+# df['education_label'].value_counts()
+
+# ---------- DATA SUM ----------
+
+# much of this can be done on sheets/excel but here is the underlying processes behind it...
+
+# Calculate mean
+# df['systolic_bp'].mean()
+
+# Calculate standard deviation
+# df['systolic_bp'].std()
+
+# Or get both at once
+# df['systolic_bp'].describe()
+
+# df['age'].median()
+
+# df['age'].quantile([0.25, 0.75])
+
+# df['age'].describe() # I genuinely don't know why all of it is in scientific notation...
+
+# df['age'].mode()
+
+# ---------- SUMMERISING CATEGORICAL VARIABLES -----------
+
+# df['gender'].value_counts() # outputs # of each gender
+
+# pd.crosstab(df['has_diabetes'], df['bmi_category']) # pb is panda
+
+df.groupby('has_diabetes')['bmi'].mean() # .mean() is interchangable with .std() .min() .max() etc...
+
