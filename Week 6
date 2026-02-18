@@ -1,0 +1,102 @@
+#---------- IMPORTS ----------
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import tableone as tb #needed to pip install tableone, installed as 'tb' instead of 'tableone'
+
+#---------- DATAFRAME ----------
+df = pd.read_csv('https://raw.githubusercontent.com/osoliman/DSC110/refs/heads/main/Datasets/nhanes_final.csv')
+
+#---------- DATA -----------
+
+#Raw Data -> Table
+
+#df.head() #Throws the data in output as a table.
+
+#print(df['age'].mean,' (±',df['age'].std(),')')
+
+#---------- HISTOGRAM ----------
+
+#One Numerical Variable -> Histogram
+
+#df['bmi'].hist() #Draws a histogram in output!
+
+#The results show that the most commmon bmi is 25.
+
+#---------- BAR GRAPH -----------
+
+#One Category -> Bar graph
+
+#df['gender'].value_counts().plot(kind='bar') #Draws a bar graph!
+
+#The resluts show that there are ~500 more women in the data than men.
+
+#---------- SCATTERPLOT ----------
+
+#Two Numerical Variables -> Scatterplot (dot plot)
+
+#df.plot(x='fasting_glucose', y='hba1c', kind='scatter') #Draws a scatter plot! (Got an error: I thought 'hba1c' was 'hbalc' with an l instead of a one lol)
+
+#The results show that as fasting glucose increases, so does hba1c.
+
+#---------- CROSSTAB ----------
+
+#Two Categorical Variables -> Crosstab (kind of like a bar graph)
+
+#pd.crosstab(df['gender'], df['has_diabetes']).plot(kind='bar')
+
+#The results show that there are less males with diabetes than females.
+
+#---------- BOXPLOT ----------
+
+#One Categorical and One Numerical -> Boxplot (a friend of statisticians :) )
+
+#df.boxplot(column='bmi', by='gender')
+
+#The results show that women have an equal mean bmi of men, but higher variance.
+
+#---------- FROM DATA TO VIZ ----------
+
+#Resource that can help you choose a graph to visually represent your data.
+
+#---------- CUSTOMISING CHARTS ----------
+
+#One Numerical Variable
+#df['age'].hist(color='crimson',edgecolor='green',bins=5,xrot=180,yrot=180,figsize=(21,5))
+#plt.title('Age Distribution among NHANES Survey Respondents')
+#plt.xlabel('Age (years)')
+#plt.ylabel('Number of Respondents')
+#plt.grid(False)
+
+#This chart is a red with edges and no grid
+
+#---------- SEABORN LIBRARY ----------
+
+#Seaborn is able to process data before making a graph
+
+#We want to only look at yes and no (1,2) responses in diabetes
+
+#df_diabetes = df[df['has_diabetes'].isin([1, 2])].copy() #This creates a new dataframe for diabetes that is a copy of the selected values.
+
+#diabetes_map={1:'Yes', 2:'No'} #This is a dictionary that will be mapped
+#df_diabetes['has_diabetes']=df_diabetes['has_diabetes'].map(diabetes_map)
+
+#Two Categories * One Numerical and Measuring 'Density' -> Violin Chart
+
+#sns.violinplot(data=df_diabetes, x='has_diabetes', y='bmi')
+#plt.title('BMI Distribution by Diabetes Status')
+#plt.xlabel('Diabetes Status (1=Yes, 2=No)')
+#plt.ylabel('BMI (kg/m²)')
+
+#---------- HEATMAP -----------
+
+#Many Variables in relation with each other -> Heatmap
+
+#numeric_cols = df[['age', 'bmi', 'systolic_bp', 'hba1c', 'fasting_glucose']].corr() 
+#sns.heatmap(numeric_cols, annot=True, cmap='coolwarm', center=0.5) #I like the way that center=0.5 looks more than center=1
+#plt.title('Correlation Between Numeric Variables')
+
+#---------- TABLEONE -----------
+
+tb.TableOne(df, nonnormal='age', show_histograms=True)
