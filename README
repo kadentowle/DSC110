@@ -5,15 +5,9 @@ This README will cover:
   - A summary of what I learned.
   - A tour of my repository: what is in each folder, what each section contains.
 
-The DSC110 course is a data science course that covers a large range of actually used tools in the professional data science space. 
-Because of the nature of MCPHS, the class teaches a health-focused cirriculum that is usefull for biotech and similar students.
-While not every project is in this GitHub repository, many of the coding projects are documented here. These projects were done in either SQL or Python.
-This is because most data scince in industry is done by collecting, prepping and then playing around with/analysing data.
+The DSC110 course is a data science course that covers a large range of actually used tools in the professional data science space. Because of the nature of MCPHS, the class teaches a health-focused cirriculum that is usefull for biotech and similar students. While not every project is in this GitHub repository, many of the coding projects are documented here. These projects were done in either SQL or Python. This is because most data scince in industry is done by collecting, prepping and then playing around with/analysing data.
 
-Most of what I learned in this course reflects these steps, collecting, describing, and analysing data. In industry, most of the time is spent
-sorting through, or "cleaning" the data before coming to your conclusions through analysis. I found this suprising, as when I started the course
-I thought that most of data science is the cool analysis part. Still, while looking thorough my repository, you'll find many of the steps
-in data science that actual industry people are using day-to-day.
+Most of what I learned in this course reflects these steps, collecting, describing, and analysing data. In industry, most of the time is spent sorting through, or "cleaning" the data before coming to your conclusions through analysis. I found this suprising, as when I started the course I thought that most of data science is the cool analysis part. Still, while looking thorough my repository, you'll find many of the steps in data science that actual industry people are using day-to-day.
 
 This specific repository has no folders, but it's 7 files start at SQL with #0, and then exclusively use python from #1 to #5 and the EXTRA file.
 
